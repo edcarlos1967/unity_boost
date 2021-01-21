@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Rocket : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem deathParticles;
+
+    [SerializeField] Text txtName;
 
     Rigidbody rigidbody;
     AudioSource audioSource;
@@ -80,6 +83,7 @@ public class Rocket : MonoBehaviour
 
     private void StartSuccessSequence()
     {
+        print("Success");
         state = State.Transcending;
         audioSource.Stop();
         audioSource.PlayOneShot(success);
@@ -89,6 +93,7 @@ public class Rocket : MonoBehaviour
 
     private void StartDeathSequence()
     {
+        print("Dead");
         state = State.Dying;
         audioSource.Stop();
         audioSource.PlayOneShot(death);
@@ -138,7 +143,7 @@ public class Rocket : MonoBehaviour
 
     private void RespondToRotateInput()
     {
-        rigidbody.freezeRotation = true; // Pegar o controle manual da rotação
+        rigidbody.angularVelocity = Vector3.zero; // Pegar o controle manual da rotação
 
         float rotationThisFrame = rcsThrust * Time.deltaTime;
         if (Input.GetKey(KeyCode.A))
@@ -149,8 +154,11 @@ public class Rocket : MonoBehaviour
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
+    }
 
-        rigidbody.freezeRotation = false; // Retorna o controle da rotação para a física
+    private void SetName(string name)
+    {
+        txtName.text = name;
     }
 }
 

@@ -542,6 +542,7 @@ MonoBehaviour:
   mainEngineParticles: {fileID: 198100717504692023}
   successParticles: {fileID: 198631065627386673}
   deathParticles: {fileID: 198204747442190395}
+  txtName: {fileID: 0}
 --- !u!82 &5689286453997740824
 AudioSource:
   m_ObjectHideFlags: 0

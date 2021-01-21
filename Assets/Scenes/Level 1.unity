@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 84267932}
   - component: {fileID: 84267931}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TxtName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -729,6 +729,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1792723630, guid: ec95ab4bd28f25e418b9023d7c3f9652, type: 3}
+      propertyPath: txtName
+      value: 
+      objectReference: {fileID: 84267931}
     - target: {fileID: 5129158316924179100, guid: ec95ab4bd28f25e418b9023d7c3f9652,
         type: 3}
       propertyPath: m_Name
