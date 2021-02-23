@@ -2,9 +2,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Runtime.InteropServices;
 
 public class Rocket : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    private static extern string GetUrlParam();
+
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 50f;
     [SerializeField] float levelLoadDelay = 2f;
@@ -29,6 +33,9 @@ public class Rocket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        string _return = GetUrlParam();
+        SetParams(_return);
+
         rigidbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -156,9 +163,34 @@ public class Rocket : MonoBehaviour
         }
     }
 
-    private void SetName(string name)
+    private void SetParams(string strParams)
     {
-        txtName.text = name;
+        //"?user=teste&eventId=123&color=662ee8"
+        bool _hasError = false;
+
+        if (strParams.Contains("params") && strParams.Contains("?user"))
+        {
+            try
+            {
+                string[] _objArray = strParams.Split('&');
+                foreach (var item in _objArray)
+                {
+                    string[] _obj = item.Split('=');
+
+                    if (_obj[0].Contains("color"))
+                    {
+
+                    }
+                }
+            }
+            catch (System.Exception)
+            {
+                _hasError = true;
+                throw;
+            }
+        }
+
+        txtName.text = strParams;
     }
 }
 
